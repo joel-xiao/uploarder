@@ -1,0 +1,28 @@
+@description: 文件上传-ios 安卓交互
+  遇到的问题：
+  于与原生ios 安卓交互的时候需要将方法赋值给window
+  
+  比如有两个文件上传组件 在一个父组件下 返回值永远都在第二个，而导致
+  上传的文件一直都在第二个
+  
+  解决方法：
+  点击调用原生方法的时候 将返回时需要的参数都传给原生，调用成功，
+  返回文件时再让原生 ios 安卓 将传给他的参数一起返回回来进行赋值。
+	
+  原因 ：
+  同样的方法名赋给window会直接替换掉
+  
+  插件:
+   里面使用了 vant-ui 的 Toast 提示框 如果不需要就修改调
+   
+   组件参数值：
+   <uploader
+     name=""//文件列表名称 必填 strng
+     :action="uploadFile"//上传地址必填 string
+     :data="{}"//上传时所需的参数 - 不是必填 object
+     :onSuccess="afterRead"//成功的回调 function
+     :beforeDelete="deleteFile"//删除的回调 function
+     :fileList="[]"//文件列表-必须以数组形式 array
+     :maxCount="1"//上传最大个数 number
+     :beforeRead="beforeRead"//删除前回调 function
+   ></uploader>
